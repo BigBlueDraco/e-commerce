@@ -54,6 +54,6 @@ module.exports = {
         api: `docker build -t api . -f ${apiPath}/Dockerfile`,
       },
     },
-    dev: "npx turbo run dev",
+    dev: "turbo run dev",
   },
 };

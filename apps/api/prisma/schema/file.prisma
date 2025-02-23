@@ -1,0 +1,6 @@
+model File {
+    id           String    @id @default(uuid())
+    name         String
+    path         String 
+    original     String  @unique
+}
