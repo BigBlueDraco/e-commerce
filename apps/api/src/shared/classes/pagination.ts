@@ -1,4 +1,4 @@
-import { Base } from '@plant-care/types/dist/base';
+import { Base } from '../dtos/pagination';
 
 export class Pagination<T> implements Base.PaginationResponse {
   data: T[];

@@ -1,0 +1,6 @@
+model Shop {
+  id               String       @id @default(uuid())
+  ownerId        String
+  customer          User    @relation(fields: [ownerId], references: [id])
+ products Product[]
+}

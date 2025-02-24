@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { ICRUDService } from '../interfaces/crud/service/ICRUD';
 import { BasePrismaCrudService } from './BasePrismaCrudService';
 import { FileService } from 'src/file/services/file.service';
+import { PrismaService } from 'src/persistence/prisma/prisma.service';
 
 @Injectable()
 export class BasePrismaCrudWithFileService<
@@ -32,7 +32,7 @@ export class BasePrismaCrudWithFileService<
       await this.fileService.remove(entity.id);
       return await super.delete(where);
     } catch (error) {
-      throw new Error(`Failed to delete ${this.recourse}: ${error.message}`);
+      throw new Error(`Failed to delete ${this.recourse}: ${error}`);
     }
   }
   async upload(file: Express.Multer.File, ...args: any) {
@@ -40,7 +40,7 @@ export class BasePrismaCrudWithFileService<
       this.fileService.upload(file, ...args);
     } catch (err) {
       console.log(err);
-      throw new Error(`Failed to upload file: ${err.message}`);
+      throw new Error(`Failed to upload file: ${err}`);
     }
   }
 }

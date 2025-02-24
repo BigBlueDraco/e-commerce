@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { ICRUDService } from '../interfaces/crud/service/ICRUD';
+import { PrismaService } from 'src/persistence/prisma/prisma.service';
 
 @Injectable()
 export class BasePrismaCrudService<

@@ -1,0 +1,14 @@
+model Product {
+  id              String       @id @default(uuid())
+  productName String
+  description String?
+  sku         String       @unique
+  price       Decimal      @db.Decimal(10, 2)
+  stockQuantity Int
+//   categoryId  Int?
+//   category    Category?    @relation(fields: [categoryId], references: [id])
+  imageUrl    String?      @db.VarChar(2048)
+  orderItems  OrderItem[]
+  shopId String
+  shop Shop @relation(fields: [shopId], references: [id])
+}

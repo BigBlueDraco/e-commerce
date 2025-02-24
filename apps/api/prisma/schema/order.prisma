@@ -1,0 +1,35 @@
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
+  REFUNDED
+}
+model Order {
+  id                String       @id @default(uuid())
+  customerId        String
+  customer          User    @relation(fields: [customerId], references: [id])
+  orderDate         DateTime    @default(now())
+//   shippingAddressId Int
+//   shippingAddress   Address     @relation("ShippingAddress", fields: [shippingAddressId], references: [id])
+//   billingAddressId  Int
+//   billingAddress    Address     @relation("BillingAddress", fields: [billingAddressId], references: [id])
+//   shippingMethodId  Int
+//   shippingMethod    ShippingMethod @relation(fields: [shippingMethodId], references: [id])
+//   paymentMethodId   Int
+//   paymentMethod     PaymentMethod  @relation(fields: [paymentMethodId], references: [id])
+  orderStatus       String      @default("Pending")
+  totalAmount       Decimal     @db.Decimal(10, 2)
+  orderItems        OrderItem[]
+}
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+}
